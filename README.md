@@ -2,4 +2,4 @@
 EHC Workshop
 
 ## Overview
-![Overview] (..\Project\Blue%20Team%20Scenario%202.png)
+![Overview] (D:\Ethical Hacker Club\Project\Blue Team Scenario 2.png)
