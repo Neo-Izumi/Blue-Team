@@ -8,7 +8,7 @@ from nextcord.ext.commands.errors import MissingPermissions
 
 
 load_dotenv()
-TOKEN = getenv('DISCORD_TOKEN_MAIN')
+TOKEN = getenv('DISCORD_TOKEN')
 GUILD = getenv('DISCORD_GUILD')
 
 intents = nextcord.Intents.all()

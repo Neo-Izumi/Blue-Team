@@ -11,21 +11,24 @@ class role_options(Cog):
     
     ID = 1035593393381838888
     
+    
+    
     @slash_command(name = 'roles', description = 'select your role in a blue team', guild_ids = [ID])
     async def roles(self, interaction: Interaction): 
-        button = discord_components.button.roles()
+        roles = discord_components.button.roles()
         await interaction.response.send_message("Choose your role and we gonna give you the description for each role.")
-        await interaction.followup.send(view=button)
-        await button.wait()
+        await interaction.followup.send(view=roles, delete_after=10)
+        await roles.wait()
         
-        if button.value == None:
+        if roles.value == None:
             return
-        elif button.value == 'alert':
+        elif roles.value == 'alert':
             await interaction.followup.send('As mentioned above, let\'s try typing /log_files or /other_messages')
-        elif button.value == 'response':
+        elif roles.value == 'response':
             await interaction.followup.send('As mentioned above, let\'s try typing /list_tasks')
-        elif button.value == 'environment':
-            print("So you want to simulate a vulnerable environment")
+        elif roles.value == 'environment':
+            await interaction.followup.send('Ok. Your work has completed')
+        
     
     @slash_command(name = 'test', description = 'Run the test slash_command', guild_ids = [ID],)
     async def test(self, interaction: Interaction, message):
