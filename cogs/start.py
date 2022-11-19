@@ -9,8 +9,8 @@ class start (Cog):
         self.bot = bot
         
     
-    # ID = 1035593393381838888
-    ID = 854547492670799932
+    ID = 1035593393381838888
+    # ID = 854547492670799932
     
     
         
@@ -45,7 +45,7 @@ class start (Cog):
         await author.dm_channel.send(embed = begin)
         await asyncio.sleep(5)
         await author.dm_channel.send(embed = intro)
-        await asyncio.sleep(2)
+        await asyncio.sleep(3)
         await author.dm_channel.send(embed = suggest)
 
         

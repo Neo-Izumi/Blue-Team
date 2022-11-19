@@ -22,7 +22,7 @@ class incident_response(Cog):
                 delete_after = 5
             )
             return
-        await ctx.send('Tất cả những cảnh báo mà bạn cần xử lý đây, cố lên nhé \U0001F609', view = task, delete_after=15)
+        await ctx.send('```Tất cả những cảnh báo mà bạn cần xử lý đây, cố lên nhé \U0001F609```', view = task, delete_after=20)
         await task.wait()
         
         if task.value == None:
@@ -42,7 +42,7 @@ class incident_response(Cog):
             suggest.add_field(name='2. !help', value='display all commands', inline=False)
             
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await ctx.send(embed = suggest)
         
         elif task.value == 'pen':
@@ -68,9 +68,9 @@ class incident_response(Cog):
             suggest.add_field(name='8. !help', value='display all commands', inline=False)
             
             await ctx.send(embed = embed.embed_story(message1))
-            await asyncio.sleep(1)
-            await ctx.send(embed = suggest)
             await asyncio.sleep(2)
+            await ctx.send(embed = suggest)
+            await asyncio.sleep(3)
             await ctx.send(embed = embed.embed_story(message2))
             
         elif task.value == 'rep': 
@@ -87,7 +87,7 @@ class incident_response(Cog):
             suggest.add_field(name='3. !help', value='display all commands', inline=False)
             
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
             await ctx.send(embed = suggest)
             
         elif task.value == 'ssh':
@@ -103,7 +103,7 @@ class incident_response(Cog):
             suggest.add_field(name='2. !help', value='display all commands', inline=False)
             
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
             await ctx.send(embed = suggest)
       
   
@@ -128,9 +128,9 @@ class ftp_request(Cog):
         
         message = (
             f'Cho những bạn chưa biêt, firewall là tập hợp những rules mà chúng ta định nghĩa sao cho phù hợp với hệ thống mà chúng ta thiết lập firewall. Những rules này sẽ được dùng để giám sát, điều khiển network traffic (cả incoming và outcoming).\n\n'
-            f'Để thực hiện configure firewall deny FTp requests, bạn sẽ cần dùng lệnh: '
+            f'Để thực hiện configure firewall deny FTP requests, bạn sẽ cần dùng lệnh: '
         ) 
-        suggest = embed.Embed(title='$config iptables --deny port 21', color=0x3498db)
+        suggest = embed.Embed(title='$config iptables --deny -p 21', color=0x3498db)
         await ctx.send(embed = embed.embed_story(message))
         await ctx.send(embed = suggest)
         
@@ -144,7 +144,7 @@ class ftp_request(Cog):
         if message.author == self.bot.user or message.content.startswith('!'):
             return
         
-        if '$config iptables --deny port 21' in message.content.strip():
+        if '$config iptables --deny -p 21' in message.content.strip():
             user.dic_user[id].ftp_process = 2
             suggest = embed.Embed(title='$iptables --list_rule', color=0x3498db)
             await channel.send('Configuring firewall --------------')
@@ -165,23 +165,24 @@ class ftp_request(Cog):
                 f'Này {message.author.name}, bạn block hộ tôi cái network IP này cái 178.76.9.0, chúng ta vừa tìm ra được một nhóm bot net có network address như này.\n\n' 
                 f'Mau mau nhé, không sếp trừ lương. Đang giục kia kìa.'
             )
-            suggest = embed.Embed(title='$config blacklist -ip IP_address', description='replace IP_address with IP address you want to block.', color=0x3498db)
+            suggest = embed.Embed(title='$config --blacklist -ip IP_address', description='Note: replace IP_address with IP address you want to block.', color=0x3498db)
             await channel.send('Done!!!')
-            await channel.send('''```Port 20: Anable\nPort 21: Disable\nPort 80: Disable\n...```''')
+            await channel.send('''```Port 20: Enable\nPort 21: Disable\nPort 80: Enable\nPort 443: Enable\n...```''')
             await asyncio.sleep(3)
             await channel.send('```Chờ đã, bạn có 1 tin nhắn từ đồng nghiệp:```') 
+            await asyncio.sleep(1)
             await channel.send(embed = embed.embed_story(message))
             await asyncio.sleep(1)
             await channel.send(embed = suggest)
 
-        elif '$config blacklist -ip 178.76.9.0' in message.content.strip():
+        elif '$config --blacklist -ip 178.76.9.0' in message.content.strip():
             if user.dic_user[id].ftp_process != 3:
                 await channel.send(
                     embed = embed.embed_story(self.deny),
                     delete_after = 5
                 )
                 return
-            user.dic_user[id].ftp = True
+            user.dic_user[id].ftp_process = 100
             message = (
                 f'Chắc Antoine đang cay lắm đấy \U0001F923, tuy nhiên hắn sẽ sớm có động thái mới thôi.\n\n'
                 f'Gấp rút lên, thời gian không chừa một ai. Antoine cũng vậy (chắc thế).'
@@ -194,8 +195,9 @@ class ftp_request(Cog):
             await asyncio.sleep(1)
             await channel.send(embed = embed.embed_final('deny FTP request'))
             await channel.send('Good job boy!!!')
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
             await channel.send(embed = embed.embed_story(message))
+            await asyncio.sleep(2)
             await channel.send(embed = suggest)
             
         elif '$' in message.content and message.channel is message.author.dm_channel:
@@ -266,7 +268,7 @@ class penatration(Cog):
             suggest.add_field(name='3. !help', value='display all commands', inline=False)
             await asyncio.sleep(1)
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await ctx.send(embed = suggest)
             
         
@@ -299,7 +301,7 @@ class penatration(Cog):
             suggest.add_field(name='3. !help', value='display all commands', inline=False)
             await asyncio.sleep(1)
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await ctx.send(embed = suggest)
                 
     @command(name='restore', description='restore the whole system to previous daily backups')
@@ -331,7 +333,7 @@ class penatration(Cog):
             suggest.add_field(name='3. !help', value='display all commands', inline=False)
             await asyncio.sleep(1)
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await ctx.send(embed = suggest)
             
     @command(name='research', description='research for more information of that malware')
@@ -358,6 +360,7 @@ class penatration(Cog):
             await asyncio.sleep(1)
             await ctx.send('```Bạn có thể thử điều tra cả net flow nữa nhé.```', embed = suggest)
         else: 
+            user.dic_user[id].pen_process['finish'] = True
             message = (
                 f'Hehe\n\n'
                 f'Ta vừa chống trả 2 cuộc tấn công đến từ Antoine, không biết hắn có còn động thái gì nữa không.'
@@ -365,13 +368,12 @@ class penatration(Cog):
                 f'Ngoài ra còn phải viết cả báo cáo cho ngày hôm nay.'
             )
             suggest = embed.embed_command()
-            suggest = embed.embed_command()
             suggest.add_field(name = '1. !list_tasks', value = 'list all tasks', inline = False)
             suggest.add_field(name = '2. !stages', value = 'all stages you need to walk through as a blue team member', inline = False)
             suggest.add_field(name = '3. !help', value = 'display all commands', inline = False)
             await asyncio.sleep(1)
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await ctx.send(embed = suggest)
         
     
@@ -398,6 +400,7 @@ class penatration(Cog):
             await asyncio.sleep(1)
             await ctx.send('```Bạn có thể thử nghiên cứu về con malware nữa nhé.```', embed = suggest)  
         else: 
+            user.dic_user[id].pen_process['finish'] = True
             message = (
                 f'Hehe\n\n'
                 f'Ta vừa chống trả 2 cuộc tấn công đến từ Antoine, không biết hắn có còn động thái gì nữa không.'
@@ -405,13 +408,12 @@ class penatration(Cog):
                 f'Ngoài ra còn phải viết cả báo cáo cho ngày hôm nay'
             )
             suggest = embed.embed_command()
-            suggest = embed.embed_command()
             suggest.add_field(name = '1. !list_tasks', value = 'list all tasks', inline = False)
             suggest.add_field(name = '2. !stages', value = 'all stages you need to walk through as a blue team member', inline = False)
             suggest.add_field(name = '3. !help', value = 'display all commands', inline = False)
             await asyncio.sleep(1)
             await ctx.send(embed = embed.embed_story(message))
-            await asyncio.sleep(1)
+            await asyncio.sleep(3)
             await ctx.send(embed = suggest)
         
      
@@ -435,7 +437,6 @@ class report_event(Cog):
             )
             return
         user.dic_user[id].rep_process['check'] = True
-        
         suggest = embed.embed_command()
         suggest.add_field(name='1. !Snort', value='Introduction to Snort', inline=False)
         suggest.add_field(name='2. !Kibana', value='Introduction to Kibana', inline=False)
@@ -507,7 +508,7 @@ class report_event(Cog):
             )
             return
         else:
-            user.dic_user[id].rep = True
+            user.dic_user[id].rep_process['finish'] = True
             user.dic_user[id].rep_process['report'] = True
             
             message = (
@@ -522,7 +523,6 @@ class report_event(Cog):
             
             story = embed.embed_story(message)
             story.set_image(url = 'https://japana.vn/uploads/detail/2018/07/images/11(7).jpg')
-            suggest = embed.embed_command()
             suggest = embed.embed_command()
             suggest.add_field(name = '1. !list_tasks', value = 'list all tasks', inline = False)
             suggest.add_field(name = '2. !stages', value = 'all stages you need to walk through as a blue team member', inline = False)
@@ -584,6 +584,8 @@ class ssh_connection(Cog):
             await ctx.send('```Vì vài điều khoản của công ty, chúng ta chỉ cấp quyền cho họ vào một số tài nguyên thôi```', embed = embed.Embed(title='!cfg_acl', color=0x3498db))
         
         else:
+            user.dic_user[id].ssh_process['finish'] = True
+            
             message1 = (
                 f'Yay, rảnh tay hơn rồi.\n\n'
                 f'Giao việc còn lại cho các chuyên gia thôi.\n\n'
@@ -593,7 +595,6 @@ class ssh_connection(Cog):
                 f'Quả này hắn nguy to \U0001F60F'
             )
             
-            suggest = embed.embed_command()
             suggest = embed.embed_command()
             suggest.add_field(name = '1. !stages', value = 'all stages you need to walk through as a blue team member', inline = False)
             suggest.add_field(name = '2. !help', value = 'display all commands', inline = False)
@@ -606,7 +607,6 @@ class ssh_connection(Cog):
             await asyncio.sleep(2)
             await ctx.send(embed = embed.embed_story(message2))
             await ctx.send(embed = suggest)
-            user.dic_user[id].ssh = True
         
         
     @command(name='cfg_whitelist', description='Configure the whitelist')
@@ -624,7 +624,7 @@ class ssh_connection(Cog):
         await asyncio.sleep(2)
         await ctx.send('Done!!!')
         await asyncio.sleep(1)
-        await ctx.send('Ok, try establishing ssh connection again...')
+        await ctx.send('```Ok, giờ bạn thử lại thiết lập ssh connection xem sao \U0001F605```')
         
     
     @command(name='cfg_acl', description='Configure the Access Control List')
@@ -642,7 +642,7 @@ class ssh_connection(Cog):
         await asyncio.sleep(2)
         await ctx.send('Done!!!')
         await asyncio.sleep(1)
-        await ctx.send('Ok, try establishing ssh connection again...')
+        await ctx.send('```Ok, giờ bạn thử lại thiết lập ssh connection xem sao \U0001F605```')
 
         
 def setup(bot):

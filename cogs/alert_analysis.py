@@ -40,7 +40,7 @@ class alert_analysis(Cog):
         await ctx.send('Done!!!')
         await asyncio.sleep(2)
         await ctx.send(embed = embed.embed_story(message1))
-        await asyncio.sleep(2)
+        await asyncio.sleep(5)
         user.dic_user[author.id].alert_check['check'] = True 
         
         if user.dic_user[author.id].alert_check['mess'] == False: 

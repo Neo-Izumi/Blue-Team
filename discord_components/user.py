@@ -19,18 +19,21 @@ class user_attribute:
             'roll_back': False,
             'restore': False,
             'research': False,
-            'netflow': False
+            'netflow': False,
+            'finish': False
         }
         self.rep = False
         self.rep_process = {
             'check': False,
             'snort': False,
             'kibana': False,
-            'report': False
+            'report': False,
+            'finish': False
         }
         self.ssh = False
         self.ssh_process = {
             'ssh': False,
             'whitelist': False,
             'acl': False,
+            'finish': False
         }
