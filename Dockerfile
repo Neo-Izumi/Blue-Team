@@ -6,7 +6,7 @@ WORKDIR /blue_bot
 
 COPY requirements.txt requirements.txt
 
-RUN pip install requirements.txt
+RUN pip install -r requirements.txt
 
 COPY . .
 
