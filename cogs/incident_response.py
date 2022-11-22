@@ -59,13 +59,13 @@ class incident_response(Cog):
             )
 
             suggest = embed.embed_command()
-            suggest.add_field(name='1. !disconnect', value='disconnect the penatrated server from other hosts', inline=False)
-            suggest.add_field(name='3. !backup', value='obtain backup files for the injured server', inline=False)
-            suggest.add_field(name='4. !roll_back', value='rolls back all sessions', inline=False)
-            suggest.add_field(name='5. !restore', value='restore the whole system to previous daily backups', inline=False)
-            suggest.add_field(name='6. !research', value='research for more information of that malware', inline=False)
-            suggest.add_field(name='7. !trace_net_flow', value='trace to the network flow', inline=False)
-            suggest.add_field(name='8. !help', value='display all commands', inline=False)
+            suggest.add_field(name='1. !disconnect', value='disconnect the penetrated server from other hosts', inline=False)
+            suggest.add_field(name='2. !backup', value='obtain backup files for the injured server', inline=False)
+            suggest.add_field(name='3. !roll_back', value='rolls back all sessions', inline=False)
+            suggest.add_field(name='4. !restore', value='restore the whole system to previous daily backups', inline=False)
+            suggest.add_field(name='5. !research', value='research for more information of that malware', inline=False)
+            suggest.add_field(name='6. !trace_net_flow', value='trace to the network flow', inline=False)
+            suggest.add_field(name='7. !help', value='display all commands', inline=False)
             
             await ctx.send(embed = embed.embed_story(message1))
             await asyncio.sleep(2)
@@ -212,7 +212,7 @@ class penatration(Cog):
         self.deny = 'Permission denied \U0001F618'
         
     
-    @command(name='disconnect', description='disconnect the penatrated server from other hosts')
+    @command(name='disconnect', description='disconnect the penetrated server from other hosts')
     @dm_only()
     async def disconnect(self, ctx):
         id = ctx.message.author.id
@@ -260,7 +260,7 @@ class penatration(Cog):
             message = (
                 f'Ok. hệ thống của tổ chức đã hoạt động bình thường rồi.\n\n'
                 f'Tuy nhiên, bạn có tò mò muốn biết những gì malware đã gây ra cho hệ thống cũng như độ nghiêm trọng của nó không ?\n\n'
-                f'Nào, chúng ta đi điều tra cái backup  đã tạo khi nãy nhé.'
+                f'Nào, chúng ta đi điều tra cái backup đã tạo khi nãy nhé.'
             )
             suggest = embed.embed_command()
             suggest.add_field(name='1. !research', value='research for more information of that malware', inline=False)
@@ -293,7 +293,7 @@ class penatration(Cog):
             message = (
                 f'Ok. hệ thống của tổ chức đã hoạt động bình thường rồi.\n\n'
                 f'Tuy nhiên, bạn có tò mò muốn biết những gì malware đã gây ra cho hệ thống cũng như độ nghiêm trọng của nó không ?\n\n'
-                f'Nào, chúng ta đi điều tra cái backup  đã tạo khi nãy nhé.'
+                f'Nào, chúng ta đi điều tra cái backup đã tạo khi nãy nhé.'
             )
             suggest = embed.embed_command()
             suggest.add_field(name='1. !research', value='research for more information of that malware', inline=False)
@@ -325,7 +325,7 @@ class penatration(Cog):
             message = (
                 f'Ok. hệ thống của tổ chức đã hoạt động bình thường rồi.\n\n'
                 f'Tuy nhiên, bạn có tò mò muốn biết những gì malware đã gây ra cho hệ thống cũng như độ nghiêm trọng của nó không ?\n\n'
-                f'Nào, chúng ta đi điều tra cái backup  đã tạo khi nãy nhé.'
+                f'Nào, chúng ta đi điều tra cái backup đã tạo khi nãy nhé.'
             )
             suggest = embed.embed_command()
             suggest.add_field(name='1. !research', value='research for more information of that malware', inline=False)

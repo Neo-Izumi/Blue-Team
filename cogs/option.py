@@ -27,7 +27,7 @@ class role_options(Cog):
             story = (
                 f'Bạn cần kiểm tra và giám sát những files ghi lại các log và event, những hệ thống phát hiện và ngăn ngừa xâm nhập vào network (IDS, IPS được tích hợp trong firewall), ...\n\n'
                 f'Theo đó, bạn cần đưa ra những đánh giá khẳng định được tính đúng sai của alert - kiểm chứng xem alert cảnh báo 1 sự cố thâm nhập là chính xác hay chỉ là 1 cảnh báo giả, ... - và còn nhiều việc bên lề khác nữa.\n\n'
-                f'\U0001F4CC Note: đây là phần việc đầu tiên nhất và cần được thực hiện mỗi ngày để đảm bảo tính an toàn chủa hệ thống.'
+                f'\U0001F4CC Note: đây là phần việc đầu tiên nhất và cần được thực hiện mỗi ngày để đảm bảo tính an toàn của hệ thống.'
             )
             
             suggest = embed.embed_command()
@@ -73,9 +73,9 @@ class role_options(Cog):
                 await ctx.send('+) Task no.1: deny ftp request:  \U0000274C')
                 
             if user.dic_user[author.id].pen_process['finish'] == True:
-                await ctx.send('+) Task no.2: actions to penatration that contain malware:  \U00002B55')
+                await ctx.send('+) Task no.2: actions to penetration that contain malware:  \U00002B55')
             else:
-                await ctx.send('+) Task no.2: actions to penatration that contain malware:  \U0000274C')
+                await ctx.send('+) Task no.2: actions to penetration that contain malware:  \U0000274C')
                 
             if user.dic_user[author.id].rep_process['finish'] == True:
                 await ctx.send('+) Task no.3: report currently events happened to the server:  \U00002B55')
@@ -90,7 +90,7 @@ class role_options(Cog):
             if user.dic_user[author.id].ca == True and user.dic_user[author.id].ftp_process >= 100 and user.dic_user[author.id].pen_process['finish'] == True and user.dic_user[author.id].rep_process['finish'] == True and user.dic_user[author.id].ssh_process['finish'] == True:
                 await asyncio.sleep(2)
                 await ctx.send(embed = embed.embed_final('All tasks are finished'))
-                await ctx.send('```Contributor: Nguyễn Doanh Thịnh - ThinhNDHE161890 - Ethical Hacker Club```')
+                await ctx.send('```EHC{Nguyễn_Doanh_Thịnh_Ethical_Hacker_Club}```')
         
 def setup(bot):
     bot.add_cog(role_options(bot)) 
